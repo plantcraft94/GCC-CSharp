@@ -5,12 +5,12 @@ IEnumerable là một **interface** được cung cấp bởi thư viện **.NET
 *Note: IEnumerable chỉ quy định khả năng duyệt, không yêu cầu **object** đó phải **lưu trữ dữ liệu** hay là một **data-container**
 #### Cấu trúc:
 Mã nguồn:
-```Cs
-public interface IEnumerable {
+```Csharp
+public interface IEnumerable 
+{
     IEnumerator GetEnumerator();
 }
 ```
-
 Dạng Generics:
 ```Csharp
 public interface IEnumerable<T>
@@ -20,24 +20,24 @@ public interface IEnumerable<T>
 ```
 
 IEnumerable không lưu **trạng thái duyệt** mà chỉ đảm bảo **cung cấp** một **Enumerator** (thứ sẽ duyệt các đối tượng implement IEnumerable). Và một IEnumerable có thể được nhiều Enumerator độc lập duyệt cùng lúc.
-Hàm `GetEnumerator()` **tạo ra và trả về một iterator** (IEnumerator hoặc IEnumerator<T> với IEnumerable<T>) có vị trí nằm ở trước phần tử đầu tiên của thứ tự duyệt.
+Hàm `GetEnumerator()` **tạo ra và trả về một iterator** (IEnumerator hoặc IEnumerator\<T> với IEnumerable\<T>) có vị trí nằm ở trước phần tử đầu tiên của thứ tự duyệt.
 
 #### Ví dụ:
 ```CS
 public class MyIntergerCollection : IEnumerable
-    {
-        private readonly int[] _listInt;
+{
+	private readonly int[] _listInt;
 
-        public MyIntergerCollection(int[] listInt)
-        {
-            _listInt = listInt;
-        }
+	public MyIntergerCollection(int[] listInt)
+	{
+		_listInt = listInt;
+	}
 
-        public IEnumerator GetEnumerator()
-        {
-            return _listInt.GetEnumerator();
-        }
-    }
+	public IEnumerator GetEnumerator()
+	{
+		return _listInt.GetEnumerator();
+	}
+}
 ```
  khi thực hiện duyệt các phần tử từ đầu đến cuối như sau
 ``` CS
@@ -91,53 +91,55 @@ Như ta đã thấy trong mã nguồn:
 #### Ví dụ:
 ```CS
 public class MyIntergerEnumerator : IEnumerator
-    {
-        private readonly int[] _listInt;
-        private int _currentIndex;
+{
+	private readonly int[] _listInt;
+	private int _currentIndex;
 
-        public MyIntergerEnumerator(int[] listInt)
-        {
-            _listInt = listInt;
-            _currentIndex = _listInt.Length;
-        }
+	public MyIntergerEnumerator(int[] listInt)
+	{
+		_listInt = listInt;
+		_currentIndex = _listInt.Length;
+	}
 
-        public object Current
-        {
-            get
-            {
-                return _listInt[_currentIndex];
-            }
-        }
+	public object Current
+	{
+		get
+		{
+			return _listInt[_currentIndex];
+		}
+	}
 
-        public bool MoveNext()
-        {
-            _currentIndex--;
+	public bool MoveNext()
+	{
+		_currentIndex--;
 
-            return _currentIndex >= 0;
-        }
+		return _currentIndex >= 0;
+	}
 
-        public void Reset()
-        {
-            _currentIndex = _listInt.Length;
-        }
-    }
+	public void Reset()
+	{
+		_currentIndex = _listInt.Length;
+	}
+}
 ```
+
 ``` CS
 public class MyIntergerCollection : IEnumerable
-    {
-        private readonly int[] _listInt;
+{
+	private readonly int[] _listInt;
 
-        public MyIntergerCollection(int[] listInt)
-        {
-            _listInt = listInt;
-        }
+	public MyIntergerCollection(int[] listInt)
+	{
+		_listInt = listInt;
+	}
 
-        public IEnumerator GetEnumerator()
-        {
-            return new MyIntergerEnumerator(_listInt);
-        }
-    }
+	public IEnumerator GetEnumerator()
+	{
+		return new MyIntergerEnumerator(_listInt);
+	}
+}
 ```
+
 ``` CS
 List<int> listInt = new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
 var customMyCollection = new MyIntergerCollection(listInt.ToArray());
