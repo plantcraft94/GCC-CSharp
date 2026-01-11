@@ -122,13 +122,30 @@ s.Add(20);
 s.Add(30);
 ```
 
-- Truy cập:
+- Kiểm tra 1 phần tử tồn tại trong HashSet:
 
 ```Csharp
 if (s.Contains(20))
 {
-	Console.WriteLine(20);
+	Console.WriteLine("Found");
 }
 ```
 
-TODO: Enumerator / IEnumerable / IEnumerator. (nó còn tệ hơn cả iterator trong C++)
+- Duyệt
+
+```Csharp
+foreach (int x in s)
+{
+    Console.WriteLine(x);
+}
+```
+
+- Xóa phần tử
+
+```Csharp
+s.Remove(20)
+```
+
+### SortedSet
+
+Giống `HashSet` nhưng tự động sắp xếp phần tử theo thứ tự tăng dần
