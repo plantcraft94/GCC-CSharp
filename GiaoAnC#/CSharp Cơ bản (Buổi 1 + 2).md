@@ -2,6 +2,7 @@
 ## 1. Môi trường và IDE:
 
 Cách 1 : Sử dụng các IDE như Visual Studio hoặc Jetbrain Rider
+
 Cách 2: Tải ,Net và dùng Vs Code + các extension cần thiết (C#, C# Dev Kit,...)
 
 ## 2. Cách tạo 1 Console Project mới 
