@@ -338,6 +338,16 @@ Array.Sort(arr);
 // mảng bây h trở thành {9,7,5,2,1}
 ```
 
+### Mảng 2 chiều
+
+Cách khai báo:
+```Csharp
+int[,] a = new int[3,4];
+```
+Cách truy cập phần tử:
+```Csharp
+Console.Writeline(a[0,1]);
+```
 ## 10. Hàm
 ### 1. Khái niệm
 - Hàm là một tập hợp các câu lệnh sẽ được thực thi nối tiếp vào chương trình khi ta gọi nó. VD: hàm `Main()`.
